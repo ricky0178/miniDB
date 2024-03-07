@@ -118,9 +118,31 @@ Persona* findByAddress(Database * database, char * address){
     return findStrRec(node, address);
 }
 Persona* findByAge(Database * database, int age){
-    return NULL;
+    Node* node = database->age;
+    return findIntRec(node, age);
 }
 
 void destroyDB(Database* database){
+    recursiveDestroy(database->name, 1);
+    recursiveDestroy(database->surname, 0);
+    recursiveDestroy(database->address, 0);
+    recursiveDestroy(database->age, 0);
 
+
+}
+
+ recursiveDestroy(Node* node, int freePersona){
+    if(node == NULL)
+        return NULL;
+    else{
+        if(node->left != NULL){
+            return recursiveDestroy(node->left);
+        }
+        if(node->right != NULL){
+            return recursiveDestroy(node->right);
+        } if(freePersona){
+            free(node->val);
+        } 
+        free(node);
+    }
 }

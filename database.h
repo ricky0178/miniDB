@@ -9,7 +9,8 @@ typedef struct Persona {
     int age;
 } Persona;
 
-// This is a node of an index that hold a string
+// This is a node of an index that hold a string, implemented as <key, value>
+// to get, from the string/integer the corresponding value Persona
 typedef struct Node {
     Type type;
     union{
